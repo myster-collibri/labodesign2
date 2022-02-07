@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block nav %}
+{% include 'nav_fem.html' %}
+{% endblock%}
+
+{%block content %}
+
+<div class="container-fluid mt-1" style="background:  #f3faf4; width: 100%;">
+  <div style="background: #eaeceb; width: 100%; padding: 10px; border:1px solid white; border-radius:10px/10px">
+  	
+    <div class="row">
+      <a href="{% url 'home' %}" class="btn text-info mb-4" style="float: right; display: block;"><i class="fas fa-arrow-circle-left"></i> Retour genre</a>
+    <div class="col-11 text-center" style="min-height: 100px; background: white; margin: 0px auto; border:1px solid #ccc; border-radius: 10px/10px" id="cao_viewer">
+      <p class="text-secondary" style="font-size: 14px">*Selection un vetement sur ce formulaire pour commencer une nouvelle conception
+        <br/><i>Pour retrouver toutes vos conceptions allez dans  <a class="text-info" href="{% url 'home' %}">Home >choisir sexe > click sur aller au laboratoire > mes conceptions</a></p>
+    </div>
+  </div>
+    <form class="mt-5" method="POST">
+    	{% csrf_token %}
+    	<i style='font-size: 12px'>*Selectionner le vetements a concevoir , exemple: Robe, Veston etc...<i class="fas fa-arrow-circle-down"></i></i>
+    	<select class="form-select" id="caovetement">
+        <option>CHOISIR</option>
+        {% for vtm in vetements %}
+       <option option={{vtm.id}}>{{vtm.nom}} : {{vtm.sexe}}</option> 
+        {% endfor %}
+      </select>
+    </form>
+    <a href="#" id="caoaddvet" class="btn btn-light text-info mt-4" >Valider</a>
+    
+  </div>
+</div>
+
+
+ {% endblock %}

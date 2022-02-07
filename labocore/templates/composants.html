@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block nav %}
+{% include 'nav_fem.html' %}
+{% endblock%}
+
+{%block content %}
+
+<div class="container-fluid mt-1" style="background:  #f3faf4; width: 100%;">
+  
+  <div class="row mb-4 mt-2">
+    <div class="col-6 text-start"><a class="text-info" href="{% url 'home_fem' %}"><i class="fas fa-home"></i>Acceuil</a></div>
+    <div class="col-6 text-end">
+      <a class="text-info" href="{% url 'home_masc' %}"><i class="fas fa-toggle-off"></i>Design homme</a>
+    </div>
+
+    <div class="row text-center">
+      <h1>{{vetement}} {{composant}}</h1>
+    </div>
+    <div class="row">
+    <p class="col-12">
+      <i class="fas fa-info-circle"></i><span style="font-weight: bold">{{composant}}:</span> {{details}}
+    </p>
+  </div>
+<!----code bizzare------->
+    <div class="row">
+      <div class="dropdown d-inline-block text-end">
+            <button type="button" class="btn header-item noti-icon waves-effect text-info" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-expanded="false"> <i class="fas fa-list-ul"></i>
+              <span class="noti-dot"></span>
+              Choisir un autre composant du chemise. <i class="fas fa-caret-down"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-notifications-dropdown">
+              <div class="p-3">
+                <div class="row align-items-center">
+                  <div class="col">
+              
+                  <div class="list-group text-start">
+                    {% for cmps in composants %}
+                    <a href="{% url 'composants' cmps.id %}" class="btn btn-warning mb-2 text-white">
+                      {{cmps.nom}}
+                    </a>
+                    <a href="#" class="btn btn-light text-info"><i class="fas fa-plus"></i> Ajouter</a>
+                  {% endfor %}
+                  </div>
+                
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+<!----------//---------------->
+<a href="{% url 'home_fem' %}" class="btn btn-light text-info"><i class="fas fa-plus"></i> Choisir un autre vetement.</a>
+<a href="{% url 'adddesign' id_cmps %}" class="btn btn-light text-info"><i class="fas fa-plus"></i> Ajouter un nouveau design {{composant}}</a>
+  </div>
+  {% if not has_modele %}
+  <div class="d-none" style="background: #eaeceb; width: 100%; padding: 10px; border:1px solid white; border-radius:10px/10px">
+    <!--<img class="col-12" style="width:100%" src="{% static 'assets/img/chemise.jpg' %}">-->
+    <div class="row">
+      <!---composant item---->
+      <p class="col-12 text-center">
+        <span class="d-inline-block">Pas encore de modele de boutonniere pour chemise actuellement, revenez plutard!</span>
+        <i class="far fa-folder-open fa-5x"></i>
+      </p>
+    </div>
+  </div>
+  {% else %}
+
+  <div style="background: #eaeceb; width: 100%; padding: 10px; border:1px solid white; border-radius:10px/10px">
+    {% for dsn in design %}
+    <p>Design {{dsn.composant}} <span style="font-style:italic;">{{forloop.counter}}</span></br>
+    ajouter {{dsn.date}}</p>
+    <img class="col-12" style="width:100%" src="{{dsn.ullistration.image.url}}">
+    <div class="row">
+      <!---composant item---->
+      <p class="col-12 text-center">
+        <span class="d-inline-block">Details: <br/>{{dsn.details}}</span>
+      </p>
+    </div>
+    <!----popup d'image------>
+    <div class="row">
+      <div class="col-12 text-center">
+                <button id="mngbtn" type="button" class="btn text-white btn-info waves-effect" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" data-bs-whatever="">Plus d'images<i class="fas fa-external-link-alt"></i></button>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Hésite pas a zoomer avec vos deux doigts ou avec ctrl+( pour les pc)! <i class="far fa-smile-wink text-warning"></i></h5>
+                  <a href="#" class="text-danger" id="closemodal"><i class="fas fa-times-circle fa-2x"></i>
+                  </a>
+                </div>
+                <div class="modal-body mt-2 mb-2">
+                  {% for img in dsn.images %}
+                  <img class="col-12 mb-3" style="width:100%" src="{{img.image.url}}">
+                  {% endfor %}
+                  <a href="{% url 'addimgdesign' dsn.id_design %}" class="btn btn-light text-info"><i class="fas fa-plus"></i> Ajouter</a>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <!------//---------------------->
+  </div>
+  {% endfor %}
+{% endif %}
+</div>
+
+
+ {% endblock %}

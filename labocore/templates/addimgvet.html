@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block nav %}
+{% include 'nav_fem.html' %}
+{% endblock%}
+
+{%block content %}
+
+<div class="container-fluid mt-1" style="background:  #f3faf4; width: 100%;">
+  <div style="background: #eaeceb; width: 100%; padding: 10px; border:1px solid white; border-radius:10px/10px">
+  	<a href="{% url 'vetement' id_vet %}" class="text-info mb-4" style="float: right;"><i class="fas fa-arrow-circle-left"></i> Retour vers vetements</a>
+    <h5 class="mt-4">Ajoueter une image( modele ) au vetements {{vetement}}</h5>
+    <form method='POST' action="{% url 'addimgvet' id_vet %}" class="mt-4" enctype="multipart/form-data">
+    	{% csrf_token %}
+    	<i style='font-size: 12px'>*Selection une image,(format autoriser: PNG, JPG):<i class="fas fa-arrow-circle-down"></i></i>
+    	{{form.image}}
+    	<input type="submit" class="btn btn-light text-info mt-4" value=" + Ajouter">
+    </form>
+    
+  </div>
+</div>
+
+
+ {% endblock %}

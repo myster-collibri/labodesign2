@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block nav %}
+{% include 'nav_fem.html' %}
+{% endblock%}
+
+{%block content %}
+
+<div class="container-fluid mt-1" style="background:  #f3faf4; width: 100%;">
+  
+  <div class="row mb-4 mt-2">
+    <div class="col-6 text-start"><a class="text-info" href="{% url 'home_fem' %}"><i class="fas fa-home"></i>Acceuil</a></div>
+    <div class="col-6 text-end">
+      <a class="text-info" href="{% url 'home_masc' %}"><i class="fas fa-toggle-off"></i>Design homme</a>
+    </div>
+
+    <div class="row text-center">
+      <h1>Liste de modeles pour boutoniere de chemise ID 1, Ajouter le 12-06-2022</h1>
+    </div>
+    <div class="row">
+    <p class="col-12">
+      <i class="fas fa-info-circle"></i><span style="font-weight: bold">Boutonniere:</span> petite fente servant a y glisser un bouton pour attacher un vetement.
+    </p>
+  </div>
+<!----code bizzare------->
+    <div class="row">
+      <div class="dropdown d-inline-block text-end">
+            <button type="button" class="btn header-item noti-icon waves-effect text-info" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-expanded="false"> <i class="fas fa-list-ul"></i>
+              <span class="noti-dot"></span>
+              Choisir un autre composant du chemise. <i class="fas fa-caret-down"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-notifications-dropdown">
+              <div class="p-3">
+                <div class="row align-items-center">
+                  <div class="col">
+              
+                  <div class="list-group text-start">
+                    <a href="{% url 'composants' %}" class="btn btn-warning mb-2 text-white">
+                      Boutonnière
+                    </a>
+
+                    <a href="#" class="btn btn-warning mb-2 text-white">
+                      Bouton manchette
+                    </a>
+
+                    <a href="#" class="btn btn-warning mb-2 text-white">
+                      Col
+                    </a>
+
+                    <a href="#" class="btn btn-warning mb-2 text-white">
+                      Empiècement
+                    </a>
+
+                    <a href="#" class="btn btn-warning mb-2 text-white">
+                      Manche
+                    </a>
+
+                    <a href="#" class="btn btn-warning mb-2 text-white">
+                      Manchette
+                    </a>
+
+                    <a href="#" class="btn btn-warning mb-2 text-white">
+                      Poche
+                    </a>
+
+                    <a href="#" class="btn btn-warning mb-2 text-white">
+                      Tour de Col
+                    </a>
+
+                    <a href="#" class="btn btn-warning mb-2 text-white">
+                      Corsage
+                    </a>
+
+                    <a href="#" class="btn btn-warning mb-2 text-white">
+                      Pli
+                    </a>
+
+                    <a href="#" class="btn btn-warning mb-2 text-white">
+                      Fente
+                    </a>
+                  </div>
+                
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+<!----------//---------------->
+<a href="{% url 'home_fem' %}" class="btn btn-light text-info"><i class="fas fa-plus"></i> Choisir un autre vetement.</a>
+<a href="{% url 'home_fem' %}" class="btn btn-light text-info"><i class="fas fa-plus"></i> Ajouter un nouveau design boutonniere.</a>
+  </div>
+  <div class="d-none" style="background: #eaeceb; width: 100%; padding: 10px; border:1px solid white; border-radius:10px/10px">
+    <!--<img class="col-12" style="width:100%" src="{% static 'assets/img/chemise.jpg' %}">-->
+    <div class="row">
+      <!---composant item---->
+      <p class="col-12 text-center">
+        <span class="d-inline-block">Pas encore de modele de boutonniere pour chemise actuellement, revenez plutard!</span>
+        <i class="far fa-folder-open fa-5x"></i>
+      </p>
+    </div>
+  </div>
+
+  <div style="background: #eaeceb; width: 100%; padding: 10px; border:1px solid white; border-radius:10px/10px">
+    <p>Design boutonniere 1</br>
+    Vous l'avez ajouter le 12-03-2022</p>
+    <img class="col-12" style="width:100%" src="{% static 'assets/img/chemise.jpg' %}">
+    <div class="row">
+      <!---composant item---->
+      <p class="col-12 text-center">
+        <span class="d-inline-block">Details: <br/>larger 3cm, longeur 4cm, coupure machin machin, repasser avec un fer a 10degre de chaleur, creer avec tissu satin de preference mais tot type de tissu c;est faisable</span>
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <a href="{% url 'gallerie' %}" class="btn btn-info text-white btn-sm">Plus d'images</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+ {% endblock %}

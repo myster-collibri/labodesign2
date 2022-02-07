@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block nav %}
+{% include 'nav_fem.html' %}
+{% endblock%}
+
+{%block content %}
+
+<div class="container-fluid mt-1" style="background:  #f3faf4; width: 100%;">
+  <div style="background: #eaeceb; width: 100%; padding: 10px; border:1px solid white; border-radius:10px/10px">
+  	<a href="{% url 'home' %}" class="text-info mb-4" style="float: right;"><i class="fas fa-arrow-circle-left"></i> Retour genre</a>
+  	<h3>Mon LABO</h3>
+    {% for vtm in vetements %}
+    <a href="{% url 'vetement' vtm.id %}" style="width: 100%" class="btn btn-warning text-white btn-sm m-1"><i class="fas fa-cut"></i> {{vtm.nom}} : {{vtm.sexe}}</a>
+    {% endfor %}
+    <a href="{% url 'addvtm' %}" class="btn btn-light text-info"><i class="fas fa-plus"></i> Ajouter</a>
+  </div>
+</div>
+
+<div class="container-fluid mt-1" style="background:  #f3faf4; width: 100%;">
+  <div style="background: #eaeceb; width: 100%; padding: 10px; border:1px solid white; border-radius:10px/10px">
+  	<h3>Mes conceptions</h3>
+    {% for cpt in mes_conceptios %}
+    <a href="{% url 'scene' cpt.id %}" style="width: 100%" class="btn btn-info text-white btn-sm m-1"><i class="fas fa-cut"></i> Conception d'un(e) {{cpt.vetement}} {{cpt.sexe}}(e)</a>
+    {% endfor %}
+
+    <a href="{% url 'caoconf' %}" class="btn btn-light text-info"><i class="fas fa-plus"></i>  Nouvelle conception</a>
+  </div>
+</div>
+
+ {% endblock %}
